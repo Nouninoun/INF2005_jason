@@ -17,7 +17,7 @@
     </section>
 
     <script>
-        //On charge les éléments du html
+        //On charge les éléments déjà présents dans le html pour se situer dans la page
         var header = document.querySelector('header');
         var section = document.querySelector('section');
 
@@ -30,34 +30,42 @@
         //On ouvre une nouvelle requête
         request.open('GET', requestURL);
 
+        //Le type de reponse est le fichier json
         request.responseType = 'json';
         request.send();
 
+        //Fonctions a effectuer onload
         request.onload = function() {
           var contacts = request.response;
           populateHeader(contacts);
           showContacts(contacts);
         }
 
+        //Recuperation du header (titre liste des contacts)
         function populateHeader(jsonObj) {
           var myH1 = document.createElement('h1');
           myH1.textContent = jsonObj['datas'];
           header.appendChild(myH1);
         }
 
+        //Affichage des contacts
         function showContacts(jsonObj){
+          //Creation d'une var pour les stocker
           var contacts = jsonObj['contacts'];
 
           for (var i = 0; i < contacts.length; i++)
           {
+            //Creation des elements HTML
             var myArticle = document.createElement('article');
             var name = document.createElement('h2');
             var list = document.createElement('ul');
+
+            //Recupération nom + prenom
             var name1 = contacts[i].firstname;
             var name2 = contacts[i].lastname;
-            //name.textContent = name1 + " " + name2;
-            name.textContent = name1;
+            name.textContent = name1 + " " + name2;
 
+            //Recuperation des numero de tel
             var phonenumbers = contacts[i].phonenumbers;
             for (var y = 0; y<phonenumbers.length; y++)
             {
@@ -65,10 +73,13 @@
               var type = phonenumbers[y].type;
               var number = phonenumbers[y].number;
               shownumber.textContent = type + " : " + number;
+              //intégration d'une occurence dans la liste
               list.appendChild(shownumber);
             }
+            //on intègre les données récoltées dans les éléments créés en JS
             myArticle.appendChild(name);
             myArticle.appendChild(list);
+            //On append les éléments créés en JS dans l'élément existant
             section.appendChild(myArticle);
           }
         }
