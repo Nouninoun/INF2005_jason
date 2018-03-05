@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Liste de conacts</title>
+    <title>Liste de contacts</title>
 
   </head>
   <body>
@@ -21,13 +21,13 @@
         var section = document.querySelector('section');
 
         //on charge l'URL du fichier .json
-        var requestURL = 'struct.json';
+        var requestURL = 'https://github.com/Nouninoun/INF2005_jason/blob/master/struct.json';
 
         //On instancie l'objet XMLHttpRequest afin de pouvoir faire une requête
         var request = new XMLHttpRequest();
 
         //On ouvre une nouvelle requête
-        request.open("GET", requestURL);
+        request.open('GET', requestURL);
 
         request.responseType = 'json';
         request.send();
@@ -49,12 +49,13 @@
 
           for (var i = 0; i < contacts.length; i++)
           {
-            var div = document.createElement('div');
+            var myArticle = document.createElement('article');
             var name = document.createElement('h2');
             var list = document.createElement('ul');
             var name1 = contacts[i].firstname;
             var name2 = contacts[i].lastname;
-            name.textContent = name1 + " " + name2;
+            //name.textContent = name1 + " " + name2;
+            name.textContent = name1;
 
             var phonenumbers = contacts[i].phonenumbers;
             for (var y = 0; y<phonenumbers.length; y++)
@@ -65,10 +66,10 @@
               shownumber.textContent = type + " : " + number;
               list.appendChild(shownumber);
             }
+            myArticle.appendChild(name);
+            myArticle.appendChild(list);
+            section.appendChild(myArticle);
           }
-          div.appendChild(name);
-          div.appendChild(list);
-          section.appendChild(div);
         }
 
     </script>
