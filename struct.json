@@ -1,0 +1,39 @@
+{
+  "datas": "Liste de contacts",
+  "contacts":
+  [
+    {
+      "id": "0",
+      "firstname": "Alice",
+      "lastname": "Doe",
+      "phonenumbers":
+        [
+          {
+            "type": "maison",
+            "number": "456-7890"
+          }
+          {
+            "type": "bureau",
+            "number": "123-4567"
+          }
+        ]
+    }
+
+    {
+      "id": "1",
+      "firstname": "Bob",
+      "lastname": "Doe",
+      "phonenumbers":
+        [
+          {
+            "type": "chalet",
+            "number": "222-3333"
+          }
+          {
+            "type": "maison",
+            "number": "999-5555"
+          }
+        ]
+    }
+  ]
+}
